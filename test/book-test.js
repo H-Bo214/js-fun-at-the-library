@@ -6,23 +6,22 @@ var {
   calculatePageCount,
   saveReview,
   writeBook,
-  editBook
+  editBook,
 } = require("../src/book.js");
 
-
 describe("book.js", function () {
-  describe("createTitle", function() {
-    it.skip("should be a function", function () {
+  describe("createTitle", function () {
+    it("should be a function", function () {
       assert.isFunction(createTitle);
     });
 
-    it.skip("should take in a title and return a modified title", function () {
+    it("should take in a title and return a modified title", function () {
       var bookIdea = createTitle("Storm's Awakening");
 
       assert.equal(bookIdea, "The Storm's Awakening");
     });
 
-    it.skip("should be able to create many modified titles", function () {
+    it("should be able to create many modified titles", function () {
       var sushiTitle = createTitle("Dancing Sushi");
       var dragonTitle = createTitle("Dragon in the Summer");
       var ghostTitle = createTitle("Teenage Ghoul");
@@ -33,12 +32,12 @@ describe("book.js", function () {
     });
   });
 
-  describe("buildMainCharacter", function() {
-    it.skip("should be a function (comment the function back into the module.exports object in book.js)", function () {
+  describe("buildMainCharacter", function () {
+    it("should be a function (comment the function back into the module.exports object in book.js)", function () {
       assert.isFunction(buildMainCharacter);
     });
 
-    it.skip("should create a character object", function () {
+    it("should create a character object", function () {
       var ghoulCharacter = buildMainCharacter("Vassya", 16, "she/her");
       var bakerCharacter = buildMainCharacter("Hannah", 30, "she/her");
 
@@ -52,12 +51,12 @@ describe("book.js", function () {
     });
   });
 
-  describe("saveReview", function() {
-    it.skip("should be a function (comment the function back into the module.exports object in book.js)", function () {
+  describe("saveReview", function () {
+    it("should be a function (comment the function back into the module.exports object in book.js)", function () {
       assert.isFunction(saveReview);
     });
 
-    it.skip("should be able to add reviews to an array", function() {
+    it("should be able to add reviews to an array", function () {
       var reviews = [];
 
       saveReview("An astounding success", reviews);
@@ -66,17 +65,21 @@ describe("book.js", function () {
       assert.deepEqual(reviews, ["An astounding success"]);
     });
 
-    it.skip("should be able to add reviews to an array that already contains reviews", function() {
+    it("should be able to add reviews to an array that already contains reviews", function () {
       var reviews = ["You won't be able to put it down"];
 
       saveReview("A page turner!", reviews);
       saveReview("An instant classic!", reviews);
 
       assert.equal(reviews.length, 3);
-      assert.deepEqual(reviews, ["You won't be able to put it down", "A page turner!", "An instant classic!"]);
+      assert.deepEqual(reviews, [
+        "You won't be able to put it down",
+        "A page turner!",
+        "An instant classic!",
+      ]);
     });
 
-    it.skip("should only add unique reviews", function() {
+    it("should only add unique reviews", function () {
       var reviews = [];
 
       saveReview("I want everyone to read this book!", reviews);
@@ -84,23 +87,26 @@ describe("book.js", function () {
       saveReview("I want everyone to read this book!", reviews);
 
       assert.equal(reviews.length, 2);
-      assert.deepEqual(reviews, ["I want everyone to read this book!", "I couldn't stop reading!"]);
+      assert.deepEqual(reviews, [
+        "I want everyone to read this book!",
+        "I couldn't stop reading!",
+      ]);
     });
   });
 
-  describe("calculatePageCount", function() {
-    it.skip("should be a function (comment the function back into the module.exports object in book.js)", function () {
+  describe("calculatePageCount", function () {
+    it("should be a function (comment the function back into the module.exports object in book.js)", function () {
       assert.isFunction(calculatePageCount);
     });
 
-    it.skip("should add 20 pages per letter in the title", function () {
+    it("should add 20 pages per letter in the title", function () {
       var bookTitle = createTitle("Teenage Ghoul");
       var bookPageCount = calculatePageCount(bookTitle);
 
       assert.equal(bookPageCount, 340);
     });
 
-    it.skip("should add 20 pages per letter for a different title", function () {
+    it("should add 20 pages per letter for a different title", function () {
       var bookTitle = createTitle("Dragon in the Summer");
       var bookPageCount = calculatePageCount(bookTitle);
 
@@ -108,12 +114,12 @@ describe("book.js", function () {
     });
   });
 
-  describe("writeBook", function() {
-    it.skip("should be a function", function () {
+  describe("writeBook", function () {
+    it("should be a function", function () {
       assert.isFunction(writeBook);
     });
 
-    it.skip("should return a book object", function () {
+    it("should return a book object", function () {
       var bookTitle = createTitle("Teenage Ghoul");
       var bookCharacter = buildMainCharacter("Vassya", 16, "she/her");
       var book = writeBook(bookTitle, bookCharacter, "fantasy");
@@ -124,7 +130,7 @@ describe("book.js", function () {
       assert.equal(book.genre, "fantasy");
     });
 
-    it.skip("should return a different book object", function () {
+    it("should return a different book object", function () {
       var dragonTitle = createTitle("Dragon in the Summer");
       var dragonCharacter = buildMainCharacter("Dana", 25, "they/them");
       var dragonBook = writeBook(dragonTitle, dragonCharacter, "fantasy");
@@ -136,12 +142,12 @@ describe("book.js", function () {
     });
   });
 
-  describe("editBook", function() {
-    it.skip("should be a function", function () {
+  describe("editBook", function () {
+    it("should be a function", function () {
       assert.isFunction(editBook);
     });
 
-    it.skip("should decrease the book's page count to be three quarters of what it originally was", function () {
+    it("should decrease the book's page count to be three quarters of what it originally was", function () {
       var ghoulTitle = createTitle("Teenage Ghoul");
       var ghoulCharacter = buildMainCharacter("Vassya", 16, "she/her");
       var ghoulBook = writeBook(ghoulTitle, ghoulCharacter, "mystery");
@@ -153,8 +159,7 @@ describe("book.js", function () {
       assert.equal(ghoulBook.pageCount, 255);
     });
 
-
-    it.skip("should decrease a different book's page count to be three quarters of what it originally was", function () {
+    it("should decrease a different book's page count to be three quarters of what it originally was", function () {
       var dragonTitle = createTitle("Dragon in the Summer");
       var dragonCharacter = buildMainCharacter("Dana", 25, "they/them");
       var dragonBook = writeBook(dragonTitle, dragonCharacter, "fantasy");
