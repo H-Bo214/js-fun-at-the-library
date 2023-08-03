@@ -31,9 +31,6 @@ function searchShelf(shelfGenre, bookTitle) {
     }
   });
   return result;
-  //iterate over shelfGenre
-  // access each book object's title
-  // if the title exists return true || false
 }
 
 module.exports = {
